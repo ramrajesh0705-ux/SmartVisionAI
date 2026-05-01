@@ -1,0 +1,34 @@
+# SmartVision Dataset - YOLOv8 Configuration
+path: /content/drive/My Drive/SmartVision_AI/data/detection
+train: images
+val: images
+
+names:
+  0: person
+  1: bicycle
+  2: car
+  3: motorcycle
+  4: airplane
+  5: bus
+  6: train
+  7: truck
+  8: traffic light
+  9: stop sign
+  10: bench
+  11: bird
+  12: cat
+  13: dog
+  14: horse
+  15: cow
+  16: elephant
+  17: bottle
+  18: cup
+  19: bowl
+  20: pizza
+  21: cake
+  22: chair
+  23: couch
+  24: potted plant
+  25: bed
+
+nc: 26

@@ -1,0 +1,25 @@
+# Large data folders
+data/classification/train/
+data/classification/val/
+data/classification/test/
+data/detection/images/
+data/detection/labels/
+
+# Model weights
+*.pth
+*.pt
+*.onnx
+*.engine
+*.weights
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+*.log
+.DS_Store
