@@ -34,10 +34,23 @@ val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
 def train_one_model(model_name):
     print(f"\nTraining {model_name} ...")
     model = load_classification_model(model_name, NUM_CLASSES).to(device)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=1e-4)
-    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=3)
+    for params in model.features.parameters():
+        params.requires_grad = False
+    
+    num_ftrs = model.classifier[-1].in_features
 
+    model.classifier = nn.Sequential(
+        nn.Linear(num_ftrs, 4096),
+        nn.ReLU(True),
+        nn.Dropout(p=0.5),
+        nn.Linear(4096, 4096),
+        nn.ReLU(True),
+        nn.Dropout(p=0.5),
+        nn.Linear(4096, NUM_CLASSES)
+    )
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=0.001)
+    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
     best_acc = 0.0
     history = {"train_loss": [], "val_acc": []}
     for epoch in range(EPOCHS):
@@ -81,5 +94,4 @@ def train_one_model(model_name):
     print(f"Finished {model_name}. Best val accuracy: {best_acc:.4f}")
 
 if __name__ == "__main__":
-    for name in ["vgg16", "resnet50", "mobilenetv2", "efficientnetb0"]:
-        train_one_model(name)
+    train_one_model("vgg16") #for name in ["vgg16", "resnet50", "mobilenetv2", "efficientnetb0"]:
