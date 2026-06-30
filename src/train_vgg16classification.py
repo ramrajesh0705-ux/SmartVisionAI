@@ -36,11 +36,9 @@ def train_one_model(model_name):
     model = load_classification_model(model_name, NUM_CLASSES).to(device)
     for params in model.features.parameters():
         params.requires_grad = False
-    
-    num_ftrs = model.classifier[-1].in_features
-
+        
     model.classifier = nn.Sequential(
-        nn.Linear(num_ftrs, 4096),
+        nn.Linear(25088, 4096),
         nn.ReLU(True),
         nn.Dropout(p=0.5),
         nn.Linear(4096, 4096),
