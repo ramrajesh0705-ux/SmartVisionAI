@@ -243,25 +243,6 @@ def export_optimized_mobilenet(model, model_name):
     except Exception as e:
         print(f"⚠️ ONNX export skipped: {e}")
 
-    # 4. Optional: Dynamic Quantization (int8) for CPU - Massive speedup on x86/ARM
-    #    (Commenting out by default, as it requires calibration data for best results.
-    #     Uncomment if you want to try it.)
-    """
-    try:
-        import torch.quantization as quant
-        model_to_quant = copy.deepcopy(model).to('cpu')
-        model_to_quant.eval()
-        # Fuse layers (optional for MobileNetV2)
-        quantized_model = torch.quantization.quantize_dynamic(
-            model_to_quant, {nn.Linear, nn.Conv2d}, dtype=torch.qint8
-        )
-        torch.jit.save(torch.jit.trace(quantized_model, dummy_input), 
-                       os.path.join(MODELS_DIR, f"{model_name}_int8_jit.pt"))
-        print(f"✅ INT8 Quantized model saved.")
-    except:
-        print("⚠️ Quantization skipped (missing dependencies).")
-    """
-
 if __name__ == "__main__":
     # Train only MobileNetV2, or loop over multiple
     train_mobilenetv2()
