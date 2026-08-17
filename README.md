@@ -1,8 +1,5 @@
 # Problem Statement
-  Image Dataset is provided from the COCO Dataset , Train a model to identify and classify images that belongs to 25 categories. Use Transfer-Learning approach to train a model.
-  Given an Image Dataset , Multiple object will be there in a image. Identify those objects with bounding box and annotate the object.
-  
----
+  The task involves two main sub-tasks: (1) Image Classification – Train a model using transfer learning to classify images into 25 predefined COCO categories, and (2) Object Detection with Annotation – For images containing multiple objects, identify each object's location with a bounding box and annotate it with the correct class label. Using a pre-trained architecture (like YOLO or Faster R-CNN), you'll fine-tune the model on the COCO subset to handle both tasks simultaneously. The model must output class predictions, bounding box coordinates, and confidence scores for every detected object in an image. You'll be evaluated on classification accuracy and detection mAP, and deliver a working inference pipeline that produces visually annotated outputs.
 title: "SmartVision_AI"
 emoji: 🚀
 colorFrom: blue
