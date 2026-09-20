@@ -24,7 +24,7 @@ Recognize objects from a COCO-derived subset in two different ways: classify a s
 
 The notebooks stream COCO data, select object categories, crop objects for classification, and create YOLO-format images and labels for detection. The preparation notebook records **2,500 classification images** (100 per selected category), split 70/15/15 into train/validation/test, and **2,125 detection images** with **10,986 annotated objects**.
 
-> **Repository note:** the preparation notebook describes the selection as 25 classes, but the current `src/config.py` and `data/detection/data.yaml` define **26 classes** by including `train`. The configured class list is: person, bicycle, car, motorcycle, airplane, bus, train, truck, traffic light, stop sign, bench, bird, cat, dog, horse, cow, elephant, bottle, cup, bowl, pizza, cake, chair, couch, potted plant, and bed.
+> **Repository note:** the preparation notebook describes the selection as 25 classes. The configured class list is: person, bicycle, car, motorcycle, airplane, bus, train, truck, traffic light, stop sign, bench, bird, cat, dog, horse, cow, elephant, bottle, cup, bowl, pizza, cake, chair, couch, potted plant, and bed.
 
 ## Workflow
 
@@ -112,11 +112,3 @@ The committed dataset and binary model weights are not included in the repositor
 - Built separate classification and detection data pipelines from COCO annotations.
 - Used augmentation, freezing/unfreezing, schedulers, early stopping, and mixed precision.
 - Implemented evaluation, model-history comparison, checkpoint loading, and interactive inference.
-
-## Future improvements
-
-- Resolve the 25-versus-26 class definition and publish one canonical label map.
-- Replace the Streamlit placeholder performance table with metrics loaded from evaluation artifacts.
-- Fix and test clean-clone inference dependencies and provide a pinned environment plus model-download instructions.
-- Add a true held-out detection split and report per-class precision, recall, and mAP.
-- Add automated tests and a lightweight CI workflow for data/config/model-loading checks.
