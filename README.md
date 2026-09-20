@@ -2,6 +2,8 @@
 
 A computer-vision project that compares transfer-learned image classifiers with a fine-tuned YOLOv8 detector and exposes both workflows through Streamlit.
 
+🚀 **[Live Demo →](https://huggingface.co/spaces/rajesh7593/SmartVisionAI)**
+
 ## Problem statement
 
 Recognize objects from a COCO-derived subset in two different ways: classify a single cropped/object image, or detect multiple objects with bounding boxes in a full image.
